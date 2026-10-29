@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PAC 2 de visualització de dades: circle packing, dendrograma lineal i gràfic de violí amb dades obertes.">
+  <title>PAC 2 · Tres maneres de llegir les dades</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#contingut">Ves al contingut</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="index.html">PAC 2 · Visualització de dades</a>
+    <nav class="top-nav" aria-label="Navegació principal">
+      <a href="index.html" aria-current="page">Inici</a><a href="circle_packing.html">Circle packing</a><a href="dendrogram.html">Dendrograma</a><a href="violin_plot.html">Gràfic de violí</a>
+    </nav>
+  </div></header>
+  <main id="contingut">
+    <div class="container hero">
+      <p class="eyebrow">UOC · PAC 2</p>
+      <h1>Tres maneres de llegir les dades</h1>
+      <p class="lede">Una jerarquia de població, trajectòries de desenvolupament i distribucions de guanys de capital. Cada conjunt de dades planteja una pregunta diferent i demana una forma visual adequada.</p>
+      <ul class="meta-list"><li>3 tècniques assignades</li><li>3 fonts de dades obertes</li><li>Gràfics interactius</li><li>Contingut en català</li></ul>
+    </div>
+    <section class="container section" aria-labelledby="explora">
+      <h2 id="explora">Explora les visualitzacions</h2>
+      <div class="cards">
+        <article class="card"><span class="number">01 · Jerarquia i proporció</span><h2>Circle packing</h2><p>Com es distribueix la població dels 142 països presents a Gapminder el 2007? Els cercles imbricats fan visible la relació continent–país.</p><a href="circle_packing.html">Obre la visualització <span aria-hidden="true">→</span></a></article>
+        <article class="card"><span class="number">02 · Semblança i agrupament</span><h2>Dendrograma lineal</h2><p>Quines trajectòries de l’IDH dels 19 estats del G20 s’assemblen més entre 2000 i 2023? Les branques mostren la dissimilitud calculada.</p><a href="dendrogram.html">Obre la visualització <span aria-hidden="true">→</span></a></article>
+        <article class="card"><span class="number">03 · Distribució i comparació</span><h2>Gràfic de violí</h2><p>Com es distribueixen els guanys de capital positius entre les categories racials del conjunt Adult? Els violins mostren la densitat estimada, amb el context dels zeros.</p><a href="violin_plot.html">Obre la visualització <span aria-hidden="true">→</span></a></article>
+      </div>
+    </section>
+    <section class="container section" aria-labelledby="criteri">
+      <h2 id="criteri">Criteri de lectura</h2>
+      <p>La tècnica no substitueix la pregunta. El <em>circle packing</em> prioritza la pertinença jeràrquica; el dendrograma, la semblança entre perfils; i el violí, la forma de les distribucions. Les pàgines expliquen què codifica cada marca, quines transformacions s’han fet i on acaba la interpretació legítima.</p>
+      <div class="callout"><p>Les dades són instantànies històriques o mostres delimitades. Les xifres i conclusions fan referència als països, anys i registres descrits a cada pàgina.</p></div>
+      <p class="note">Dades preparades i gràfics generats amb el codi del repositori. Consulta el <a href="https://github.com/bertamoyano/UOC_dataViz_PAC2#readme">README del projecte</a> per reproduir-los.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container">PAC 2 · Visualització de dades · <a href="https://github.com/bertamoyano/UOC_dataViz_PAC2">Codi i fonts del projecte</a></div></footer>
+</body>
+</html>

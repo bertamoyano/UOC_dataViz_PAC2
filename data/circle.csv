@@ -1,0 +1,143 @@
+continent,pais,code,poblacio
+Àsia,Afganistan,AFG,31889923
+Europa,Albània,ALB,3600523
+Àfrica,Algèria,DZA,33333216
+Àfrica,Angola,AGO,12420476
+Amèrica,Argentina,ARG,40301927
+Oceania,Austràlia,AUS,20434176
+Europa,Àustria,AUT,8199783
+Àsia,Bahrain,BHR,708573
+Àsia,Bangladesh,BGD,150448339
+Europa,Bèlgica,BEL,10392226
+Àfrica,Benín,BEN,8078314
+Amèrica,Bolívia,BOL,9119152
+Europa,Bòsnia i Hercegovina,BIH,4552198
+Àfrica,Botswana,BWA,1639131
+Amèrica,Brasil,BRA,190010647
+Europa,Bulgària,BGR,7322858
+Àfrica,Burkina Faso,BFA,14326203
+Àfrica,Burundi,BDI,8390505
+Àsia,Cambodja,KHM,14131858
+Àfrica,Camerun,CMR,17696293
+Amèrica,Canadà,CAN,33390141
+Àfrica,República Centreafricana,CAF,4369038
+Àfrica,Txad,TCD,10238807
+Amèrica,Xile,CHL,16284741
+Àsia,Xina,CHN,1318683096
+Amèrica,Colòmbia,COL,44227550
+Àfrica,Comores,COM,710960
+Àfrica,Congo - Kinshasa,COD,64606759
+Àfrica,Congo - Brazzaville,COG,3800610
+Amèrica,Costa Rica,CRI,4133884
+Àfrica,Côte d’Ivoire,CIV,18013409
+Europa,Croàcia,HRV,4493312
+Amèrica,Cuba,CUB,11416987
+Europa,Txèquia,CZE,10228744
+Europa,Dinamarca,DNK,5468120
+Àfrica,Djibouti,DJI,496374
+Amèrica,República Dominicana,DOM,9319622
+Amèrica,Equador,ECU,13755680
+Àfrica,Egipte,EGY,80264543
+Amèrica,El Salvador,SLV,6939688
+Àfrica,Guinea Equatorial,GNQ,551201
+Àfrica,Eritrea,ERI,4906585
+Àfrica,Etiòpia,ETH,76511887
+Europa,Finlàndia,FIN,5238460
+Europa,França,FRA,61083916
+Àfrica,Gabon,GAB,1454867
+Àfrica,Gàmbia,GMB,1688359
+Europa,Alemanya,DEU,82400996
+Àfrica,Ghana,GHA,22873338
+Europa,Grècia,GRC,10706290
+Amèrica,Guatemala,GTM,12572928
+Àfrica,Guinea,GIN,9947814
+Àfrica,Guinea Bissau,GNB,1472041
+Amèrica,Haití,HTI,8502814
+Amèrica,Hondures,HND,7483763
+Àsia,Hong Kong (RAE Xina),HKG,6980412
+Europa,Hongria,HUN,9956108
+Europa,Islàndia,ISL,301931
+Àsia,Índia,IND,1110396331
+Àsia,Indonèsia,IDN,223547000
+Àsia,Iran,IRN,69453570
+Àsia,Iraq,IRQ,27499638
+Europa,Irlanda,IRL,4109086
+Àsia,Israel,ISR,6426679
+Europa,Itàlia,ITA,58147733
+Amèrica,Jamaica,JAM,2780132
+Àsia,Japó,JPN,127467972
+Àsia,Jordània,JOR,6053193
+Àfrica,Kenya,KEN,35610177
+Àsia,Corea del Nord,PRK,23301725
+Àsia,Corea del Sud,KOR,49044790
+Àsia,Kuwait,KWT,2505559
+Àsia,Líban,LBN,3921278
+Àfrica,Lesotho,LSO,2012649
+Àfrica,Libèria,LBR,3193942
+Àfrica,Líbia,LBY,6036914
+Àfrica,Madagascar,MDG,19167654
+Àfrica,Malawi,MWI,13327079
+Àsia,Malàisia,MYS,24821286
+Àfrica,Mali,MLI,12031795
+Àfrica,Mauritània,MRT,3270065
+Àfrica,Maurici,MUS,1250882
+Amèrica,Mèxic,MEX,108700891
+Àsia,Mongòlia,MNG,2874127
+Europa,Montenegro,MNE,684736
+Àfrica,Marroc,MAR,33757175
+Àfrica,Moçambic,MOZ,19951656
+Àsia,Myanmar (Birmània),MMR,47761980
+Àfrica,Namíbia,NAM,2055080
+Àsia,Nepal,NPL,28901790
+Europa,Països Baixos,NLD,16570613
+Oceania,Nova Zelanda,NZL,4115771
+Amèrica,Nicaragua,NIC,5675356
+Àfrica,Níger,NER,12894865
+Àfrica,Nigèria,NGA,135031164
+Europa,Noruega,NOR,4627926
+Àsia,Oman,OMN,3204897
+Àsia,Pakistan,PAK,169270617
+Amèrica,Panamà,PAN,3242173
+Amèrica,Paraguai,PRY,6667147
+Amèrica,Perú,PER,28674757
+Àsia,Filipines,PHL,91077287
+Europa,Polònia,POL,38518241
+Europa,Portugal,PRT,10642836
+Amèrica,Puerto Rico,PRI,3942491
+Àfrica,Illa de la Reunió,REU,798094
+Europa,Romania,ROU,22276056
+Àfrica,Ruanda,RWA,8860588
+Àfrica,São Tomé i Príncipe,STP,199579
+Àsia,Aràbia Saudí,SAU,27601038
+Àfrica,Senegal,SEN,12267493
+Europa,Sèrbia,SRB,10150265
+Àfrica,Sierra Leone,SLE,6144562
+Àsia,Singapur,SGP,4553009
+Europa,Eslovàquia,SVK,5447502
+Europa,Eslovènia,SVN,2009245
+Àfrica,Somàlia,SOM,9118773
+Àfrica,Sud-àfrica,ZAF,43997828
+Europa,Espanya,ESP,40448191
+Àsia,Sri Lanka,LKA,20378239
+Àfrica,Sudan,SDN,42292929
+Àfrica,Eswatini,SWZ,1133066
+Europa,Suècia,SWE,9031088
+Europa,Suïssa,CHE,7554661
+Àsia,Síria,SYR,19314747
+Àsia,Taiwan,TWN,23174294
+Àfrica,Tanzània,TZA,38139640
+Àsia,Tailàndia,THA,65068149
+Àfrica,Togo,TGO,5701579
+Amèrica,Trinidad i Tobago,TTO,1056608
+Àfrica,Tunísia,TUN,10276158
+Europa,Turquia,TUR,71158647
+Àfrica,Uganda,UGA,29170398
+Europa,Regne Unit,GBR,60776238
+Amèrica,Estats Units,USA,301139947
+Amèrica,Uruguai,URY,3447496
+Amèrica,Veneçuela,VEN,26084662
+Àsia,Vietnam,VNM,85262356
+Àsia,Territoris palestins,PSE,4018332
+Àsia,Iemen,YEM,22211743
+Àfrica,Zàmbia,ZMB,11746035
+Àfrica,Zimbàbue,ZWE,12311143
