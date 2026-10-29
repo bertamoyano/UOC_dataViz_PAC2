@@ -48,12 +48,9 @@ COLORS = {
     "Àfrica": "#b85b4a", "Amèrica": "#3c7fa4", "Àsia": "#937249",
     "Europa": "#6d65a6", "Oceania": "#3d917b",
 }
-RACE_LABELS = {
-    "White": "Persones blanques",
-    "Asian-Pac-Islander": "Àsia i Pacífic",
-    "Black": "Persones negres",
-    "Amer-Indian-Eskimo": "Indígenes americans i àrtics",
-    "Other": "Altres",
+INCOME_LABELS = {
+    "<=50K": "Fins a 50.000 USD/any",
+    ">50K": "Més de 50.000 USD/any",
 }
 
 
@@ -125,17 +122,17 @@ def prepare_violin(refresh: bool) -> pd.DataFrame:
     path = DATA / "violin.csv"
     if path.exists() and not refresh:
         cached = pd.read_csv(path)
-        if {"raca", "guany_capital"}.issubset(cached.columns):
+        if {"edat", "ingressos"}.issubset(cached.columns):
             return cached
     adult = fetch_ucirepo(id=2)
-    frame = adult.data.features[["race", "capital-gain"]].copy()
-    frame.columns = ["raca", "guany_capital"]
-    frame["guany_capital"] = pd.to_numeric(frame["guany_capital"], errors="coerce")
-    if frame.isna().any().any() or (frame["guany_capital"] < 0).any():
-        raise ValueError("Adult conté categories o guanys de capital absents o negatius.")
-    if set(frame["raca"]) != set(RACE_LABELS):
-        raise ValueError(f"Categories racials inesperades: {sorted(frame['raca'].unique())}")
-    frame["guany_capital"] = frame["guany_capital"].astype(int)
+    ages = pd.to_numeric(adult.data.features["age"], errors="coerce")
+    income = adult.data.targets["income"].astype(str).str.strip().str.rstrip(".")
+    frame = pd.DataFrame({"edat": ages, "ingressos": income})
+    if frame.isna().any().any() or (frame["edat"] < 0).any():
+        raise ValueError("Adult conté edats absents o invàlides.")
+    if set(frame["ingressos"]) != set(INCOME_LABELS):
+        raise ValueError(f"Categories d'ingressos inesperades: {sorted(frame['ingressos'].unique())}")
+    frame["edat"] = frame["edat"].astype(int)
     save_csv(frame, path.name)
     return frame
 
@@ -210,88 +207,44 @@ def build_dendrogram(frame: pd.DataFrame) -> dict:
 
 
 def build_violin(frame: pd.DataFrame) -> dict:
-    positive = frame[frame["guany_capital"] > 0].copy()
     groups = {}
-    for category in RACE_LABELS:
-        all_values = frame.loc[frame["raca"] == category, "guany_capital"]
-        values = all_values[all_values > 0]
+    for category in INCOME_LABELS:
+        values = frame.loc[frame["ingressos"] == category, "edat"]
         groups[category] = {
-            "n_total": len(all_values), "n_positius": len(values),
-            "percent_positius": round(100 * len(values) / len(all_values), 2),
-            "mediana_positius": float(values.median()),
-            "q1_positius": float(values.quantile(0.25)),
-            "q3_positius": float(values.quantile(0.75)),
+            "n": len(values),
+            "percentatge": round(100 * len(values) / len(frame), 2),
+            "mediana": float(values.median()),
+            "q1": float(values.quantile(0.25)),
+            "q3": float(values.quantile(0.75)),
         }
-    order = sorted(RACE_LABELS, key=lambda category: (-groups[category]["mediana_positius"], RACE_LABELS[category]))
-    short_labels = {
-        "White": "Persones blanques",
-        "Asian-Pac-Islander": "Àsia i Pacífic",
-        "Black": "Persones negres",
-        "Amer-Indian-Eskimo": "Indígenes americans<br>i àrtics",
-        "Other": "Altres",
-    }
+    order = sorted(INCOME_LABELS, key=lambda category: -groups[category]["mediana"])
     fig = go.Figure()
     display_names = {}
     for category in order:
-        values = positive.loc[positive["raca"] == category, "guany_capital"].to_numpy()
-        log_values = np.log10(values)
-        display_name = f"{short_labels[category]}<br>n={len(values):,}".replace(",", ".")
+        values = frame.loc[frame["ingressos"] == category, "edat"].to_numpy()
+        display_name = f"{INCOME_LABELS[category]}<br>n={len(values):,}".replace(",", ".")
         display_names[category] = display_name
-        if category == "Other":
-            # Amb 22 valors positius, una KDE suggeriria una forma poc fiable.
-            fig.add_trace(go.Box(
-                y=log_values, x0=display_name, name=RACE_LABELS[category],
-                customdata=values, boxpoints="all", jitter=0.38, pointpos=0,
-                fillcolor="#e7eef0", line_color="#17384a",
-                marker={"color": "#5a7480", "size": 6, "opacity": 0.75},
-                hovertemplate="Guany positiu registrat: %{customdata:.0f}<extra>Altres</extra>",
-                showlegend=False,
-            ))
-        else:
-            fig.add_trace(go.Violin(
-                y=log_values, x0=display_name, name=RACE_LABELS[category],
-                box_visible=False, meanline_visible=False, points=False,
-                fillcolor="#4b83a2", line_color="#27647f", opacity=0.76,
-                bandwidth=0.18, spanmode="hard", span=[float(log_values.min()), float(log_values.max())],
-                scalemode="width", hoveron="violins",
-                hovertemplate="Guany positiu (log10): %{y:.2f}<extra>%{fullData.name}</extra>",
-            ))
-    # Resum central explícit per als grups amb violí: IQR i mediana.
-    for category in order:
-        if category == "Other":
-            continue
-        label = display_names[category]
-        q1 = groups[category]["q1_positius"]
-        median = groups[category]["mediana_positius"]
-        q3 = groups[category]["q3_positius"]
-        fig.add_trace(go.Scatter(
-            x=[label, label], y=np.log10([q1, q3]), mode="lines", showlegend=False,
-            line={"color": "#17384a", "width": 9},
-            hovertemplate=f"Interval interquartílic: {q1:.0f}–{q3:.0f}<extra></extra>",
-        ))
-        fig.add_trace(go.Scatter(
-            x=[label], y=[np.log10(median)], mode="markers", showlegend=False,
-            marker={"color": "white", "size": 14, "line": {"color": "#17384a", "width": 2}},
-            hovertemplate=f"Mediana: {median:.0f}<extra></extra>",
+        fig.add_trace(go.Violin(
+            y=values, x0=display_name, name=INCOME_LABELS[category],
+            box_visible=True, meanline_visible=False, points=False,
+            fillcolor="#4b83a2", line_color="#27647f", opacity=0.78,
+            scalemode="width", hoveron="violins",
+            hovertemplate="Edat: %{y:.0f} anys<extra>%{fullData.name}</extra>",
         ))
     fig.update_layout(
-        title={"text": "Guanys de capital positius segons la categoria racial", "x": 0.5},
-        yaxis={"title": "Guany de capital positiu (escala logarítmica)", "range": [1.9, 5.08],
-               "tickmode": "array", "tickvals": [2, 3, 4, 5], "ticktext": ["100", "1.000", "10.000", "100.000"],
+        title={"text": "Distribució de l’edat segons els ingressos anuals", "x": 0.5},
+        yaxis={"title": "Edat (anys)", "range": [15, 92], "dtick": 10,
                "gridcolor": "#e1e9eb", "zeroline": False},
-        xaxis={"title": "Categoria racial registrada (mostra Adult, 1994)", "showgrid": False,
+        xaxis={"title": "Categoria d’ingressos anuals (mostra Adult, 1994)", "showgrid": False,
                "categoryorder": "array", "categoryarray": [display_names[category] for category in order]},
-        paper_bgcolor="white", plot_bgcolor="white", font={"family": "Arial, sans-serif", "size": 14, "color": "#193a4a"},
-        margin={"l": 110, "r": 25, "t": 85, "b": 115}, height=620,
+        paper_bgcolor="white", plot_bgcolor="white",
+        font={"family": "Arial, sans-serif", "size": 14, "color": "#193a4a"},
+        margin={"l": 75, "r": 25, "t": 85, "b": 115}, height=620,
         showlegend=False, violinmode="group", hoverlabel={"bgcolor": "white"},
     )
-    fig.write_html(FIGURES / "violin_plot.html", include_plotlyjs="directory", full_html=True, config={"displayModeBar": False, "responsive": True})
-    return {
-        "total": len(frame), "positius": len(positive), "zeros": len(frame) - len(positive),
-        "grups": {category: groups[category] for category in order},
-        "ordre": order,
-    }
-
+    fig.write_html(FIGURES / "violin_plot.html", include_plotlyjs="directory", full_html=True,
+                   config={"displayModeBar": False, "responsive": True})
+    return {"total": len(frame), "grups": {category: groups[category] for category in order}, "ordre": order}
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)

@@ -4,7 +4,7 @@ Web amb tres visualitzacions interactives i la memòria breu de cada tècnica:
 
 1. [Circle packing](circle_packing.html) de la població dels 142 països inclosos a Gapminder el 2007.
 2. [Dendrograma lineal](dendrogram.html) dels valors de l'IDH dels 19 estats del G20 en sis anys entre 2000 i 2023.
-3. [Gràfic de violí](violin_plot.html) del guany de capital positiu segons la categoria racial registrada a la mostra Adult.
+3. [Gràfic de violí](violin_plot.html) de la distribució d’edat segons les dues categories d’ingressos anuals de la mostra Adult.
 
 La pàgina inicial és [index.html](index.html). Els fitxers HTML, JavaScript i les dades necessàries per consultar les visualitzacions són locals al repositori; un visitant de GitHub Pages no necessita Python ni iniciar sessió.
 
@@ -27,7 +27,7 @@ El generador crea els tres CSV preparats sota `data/`, `assets/circle-data.js` i
 | --- | --- | --- | --- |
 | Circle packing | [Gapminder / Plotly Express](https://www.gapminder.org/data/) | Any 2007; continent, país i població; noms en català; correcció del codi duplicat de Corea del Nord | Els 142 països presents a la còpia de Gapminder |
 | Dendrograma | [Our World in Data / PNUD](https://ourworldindata.org/grapher/human-development-index) | 19 estats del G20 i anys 2000, 2005, 2010, 2015, 2020 i 2023; distància euclidiana i enllaç mitjà | Semblança segons aquests sis valors d'IDH i aquest mètode |
-| Gràfic de violí | [UCI Adult](https://archive.ics.uci.edu/dataset/2/adult) | `capital-gain` i `race`; violins per als guanys positius de quatre categories, caixa i punts per a «Altres» (n=22); taula amb la freqüència de zeros de les cinc categories | Mostra històrica del cens de 1994, sense inferència causal |
+| Gràfic de violí | [UCI Adult](https://archive.ics.uci.edu/dataset/2/adult) | `age` i categoria binària `income`; 48.842 registres, dues distribucions de violí ordenades per mediana amb caixa interior | Mostra històrica del cens de 1994, sense inferència causal |
 
 ## Publicació a GitHub Pages
 
