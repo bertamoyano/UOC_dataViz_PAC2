@@ -233,9 +233,9 @@ def build_violin(frame: pd.DataFrame) -> dict:
         ))
     fig.update_layout(
         title={"text": "Distribució de l’edat segons els ingressos anuals", "x": 0.5},
-        yaxis={"title": "Edat (anys)", "range": [15, 92], "dtick": 10,
+        yaxis={"title": {"text": "Edat (anys)", "standoff": 12}, "range": [15, 92], "dtick": 10,
                "gridcolor": "#e1e9eb", "zeroline": False},
-        xaxis={"title": "Categoria d’ingressos anuals (mostra Adult, 1994)", "showgrid": False,
+        xaxis={"title": {"text": "Ingressos anuals", "standoff": 18}, "showgrid": False,
                "categoryorder": "array", "categoryarray": [display_names[category] for category in order]},
         paper_bgcolor="white", plot_bgcolor="white",
         font={"family": "Arial, sans-serif", "size": 14, "color": "#193a4a"},
